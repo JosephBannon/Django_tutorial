@@ -1,0 +1,13 @@
+<h1> This is all of your thoughts</h1>
+
+{% if thoughts_list %}
+    <ul>
+    {% for thought in thoughts_list %}
+        <li>{{ thought.title_text }}: {{ thought.thought_text }} </li>
+    {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+<a href="{% url 'polls:thought'%}">Have another thought?</a>

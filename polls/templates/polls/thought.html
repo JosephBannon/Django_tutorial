@@ -1,0 +1,9 @@
+<h1> Welcome to Deep Thoughts</h1>
+<form action="{%url 'polls:add'%}" method="post">
+    {% csrf_token %}
+    <label for="title">Enter title of thought: </label>
+    <input id="title" type="text" name="title" value="...">
+    <label for="thought">Enter thought: </label>
+    <input id="thought" type="text" name="thought" value="...">
+    <input type="submit" value="OK">
+</form>

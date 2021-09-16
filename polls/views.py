@@ -14,19 +14,30 @@ from django.urls import reverse
 
 from django.views import generic
 
+from django.utils import timezone
+
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        """
+        Return the last five published questions (not including those set to be
+        published in the future).
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
 
 
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
 
 
 class ResultsView(generic.DetailView):
@@ -38,17 +49,22 @@ class ThoughtView(generic.ListView):
     model = Deepthought
     template_name = 'polls/thought.html'
 
+
 class ListView(generic.ListView):
     model = Deepthought
     context_object_name = 'thoughts_list'
     template_name = 'polls/list.html'
+
     def get_queryset(self):
         return Deepthought.objects.all()
 
-def add(request):
 
-    t = Deepthought(title_text= request.POST["title"],thought_text=request.POST["thought"])
-    t.save()
+def add(request):
+    title_text = request.POST["title"]
+    thought_text = request.POST["thought"]
+    if title_text != "..." and thought_text != "...":
+        t = Deepthought(title_text=title_text, thought_text=thought_text)
+        t.save()
     return HttpResponseRedirect(reverse('polls:list'))
 
 
@@ -69,10 +85,8 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-        
-        
-        
-        
+
+
 """
         
 def detail(request, question_id):

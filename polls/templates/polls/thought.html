@@ -1,9 +1,36 @@
-<h1> Welcome to Deep Thoughts</h1>
-<form action="{%url 'polls:add'%}" method="post">
-    {% csrf_token %}
-    <label for="title">Enter title of thought: </label>
-    <input id="title" type="text" name="title" value="...">
-    <label for="thought">Enter thought: </label>
-    <input id="thought" type="text" name="thought" value="...">
-    <input type="submit" value="OK">
-</form>
+{% extends "polls/base.html" %}
+<body class="h-200">
+{% block title %}
+Thoughts
+{% endblock %}
+{% block content %}
+<div class="mx-auto " style="width: 70%;">
+    <div class="d-flex justify-content-center">
+        <form action="{%url 'polls:add'%}" method="post">
+            {% csrf_token %}
+
+            <div class="form-group my-4">
+                <label for="title">Enter title of thought: </label>
+                <input id="title" type="text" name="title" value="...">
+                <!--        <label for="exampleInputEmail1">Email address</label>-->
+                <!--        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
+                <!--        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+            </div>
+
+            <div class="form-group-lg my-4">
+                <label for="thought">Enter thought: </label>
+                <input class="mx-5" id="thought" type="text" name="thought" value="...">
+            </div>
+            <button type="submit" class="btn btn-primary">OK</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+
+<!-- https://www.w3schools.com/bootstrap/bootstrap_get_started.asp
+https://getbootstrap.com/docs/5.0/getting-started/introduction/
+https://www.bootstrapcdn.com/
+https://www.w3schools.com/css/
+!-->

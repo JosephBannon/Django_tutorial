@@ -1,14 +1,16 @@
 {% extends "polls/base.html" %}
 <body class="h-200">
 {% block content %}
-    {% if thoughts_list %}
+{% if thoughts_list %}
+<div class="justify-content-center">
     <ul class="list-group">
         {% for thought in thoughts_list %}
-        <li class="list-group-item">{{ thought.title_text }}: {{ thought.thought_text }}</li>
+        <li class="list-group-item text-center">{{ thought.title_text }}: {{ thought.thought_text }}</li>
         {% endfor %}
     </ul>
-    {% else %}
-    <p>No thoughts available.</p>
-    {% endif %}
-    <a href="{% url 'polls:thought'%}">Have another thought?</a>
+</div>
+{% else %}
+<p>No thoughts available.</p>
+{% endif %}
+<a href="{% url 'polls:thought'%}">Have another thought?</a>
 {% endblock %}

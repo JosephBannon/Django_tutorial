@@ -1,4 +1,4 @@
 Django
-web: gunicorn mysite.wsgi
+gunicorn
 django-heroku
 django-bootstrap5

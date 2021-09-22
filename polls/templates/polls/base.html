@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <title>{% block title %}Thoughts{% endblock %}</title>
+    <title class="bg-white justify-content-center">{% block title %}Thoughts{% endblock %}</title>
 </head>
 <header>
   <!-- Navbar -->
@@ -26,8 +26,8 @@
   </nav>
 </header>
 <body>
-<div id="content">
-    {% block content %}Thoughts{% endblock %}
+<div id="content" class="text-center text-primary">
+    {% block content %}<a  href="{% url 'polls:thought'%}">Thoughts?</a>{% endblock %}
 </div>
 </body>
 <footer class="bg-light fixed-bottom text-center text-lg-start ">

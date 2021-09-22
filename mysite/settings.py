@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-u3h=h8y+jw311p17aad*2e$bzy!=gj8184=i2m8slo571f!6p&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["polls-deepthought.herokuapp.com"]
 
 
 # Application definition
